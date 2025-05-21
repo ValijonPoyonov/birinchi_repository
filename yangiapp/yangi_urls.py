@@ -3,7 +3,7 @@ from . import views
 from .views import index_page, get_max_salary_employees, get_dependents
 
 
-app_name = 'blogapp'
+app_name = 'blog'
 urlpatterns = [
 path('', views.PostListView.as_view(), name='post_list'),
     path('<int:year>/<int:month>/<int:day>/<slug:slug>/',
