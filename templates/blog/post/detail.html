@@ -1,22 +1,20 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ post.title }}{% endblock %}
-
 {% block content %}
     <h1>{{ post.title }}</h1>
     <p class="date">
         Published {{ post.publish }} by {{ post.author }}
     </p>
-
     {{ post.body|linebreaks }}
     <p>
-        <a href = "{% url 'yangiapp:post_share' post.id%}">
+        <a href = "{% url 'new_app:post_share' post.id %}">
             Share this post
         </a>
     </p>
     {% with comments.count as total_comments %}
-<h2>
-    {{ total_comments }} comment {{ total_comments|pluralize }}
-</h2>
+         <h2>
+               {{ total_comments }} comment {{ total_comments|pluralize }}
+         </h2>
     {% endwith %}
     {% for comment in comments %}
          <div  class="comment">
@@ -27,13 +25,13 @@
              {{ comment.body|linebreaks }}
          </div>
     {% empty %}
-          <p> There are no comments yet </p>
+          <p> There are no comments yet. </p>
     {% endfor %}
     {% if new_comment %}
-          <h2> Your comment has been added </h2>
+          <h2> Your comment has been added. </h2>
     {% else %}
           <h2> Add a new comment </h2>
-           <form method = "post" style = "..." >
+        <form method="post" style="background-color: #5f5f79">
                             {{ comment_form.as_p }}
                             {% csrf_token %}
                             <p> < input type = " submit " value = " Add comment " > </p>
